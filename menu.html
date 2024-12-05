@@ -9,44 +9,54 @@
     <title>Bootstrap 5 Simple Starter</title>
 </head>
 <body>
-
 <div
-        class="container d-flex flex-column align-items-center  text-center vh-100 w-50"
->
-    <h1 class="display-5 fw-bold m-5">Karteikarten</h1>
-    <div class="card m-5 w-100 border-0">
+        class="container d-flex flex-column
+        justify-content-center text-center vh-100 w-100">
+    <div class="card bg-primary text-light shadow rounded-4 p-6">
         <div class="card-body">
-            <div class="card-img">
-                <img src="assets/man.png" alt="User1" width="80px">
-            </div>
-            <div class="card-title my-3">
-                John Doe
-            </div>
-            <div class="card-subtitle text-muted">
-                @user1
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-4">
-                    <p>Not Known<span></span></p>
+            <h1 class="display-5 fw-bold m-5">Karteikarten</h1>
+            <div class="card m-5 bg-primary border-1 text-light">
+                <div class="card-body">
+                    <div class="card-img">
+                        <img src="assets/man.png" alt="User1" width="80px">
+                    </div>
+                    <div class="card-title my-3 fw-bold">
+                        John Doe
+                    </div>
+                    <div class="card-subtitle text-muted">
+                        @user1
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <p>Not Known<span></span></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Not Sure</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Known<span></span></p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <p>Not Sure</p>
+            </div>
+            <div class="row gap-3 d-flex justify-content-center">
+                <div class="card bg-primary text-light group-list-item col-md-3">
+                    <div class="card-body">
+                        <p>All</p>
+                    </div>
+
                 </div>
-                <div class="col-md-4">
-                    <p>Known<span></span></p>
+                <div class="card bg-primary text-light group-list-item col-md-3">
+                    <div class="card-body">
+                        <p>Learning</p>
+                    </div>
+                </div>
+                <div class="card bg-primary text-light group-list-item col-md-3">
+                    <div class="card-body">
+                        <p>Mastered</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="row gap-3 d-flex justify-content-center">
-        <div class="card group-list-item col-md-12 ">
-            <h2>All</h2>
-        </div>
-        <div class="card group-list-item col-md-12">
-            <h2>Flashcards</h2>
-        </div>
-        <div class="card group-list-item col-md-12">
-            <h2>Flashcards</h2>
         </div>
     </div>
 </div>

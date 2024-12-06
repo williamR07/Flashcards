@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="css/font-awesome.css"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/menu.css"/>
     <title>Bootstrap 5 Simple Starter</title>
 </head>
 <body>
@@ -18,40 +19,44 @@
             <div class="card m-5 bg-primary border-0 text-light">
                 <div class="card-body">
                     <div class="card-img">
-                        <img src="assets/man.png" alt="User1" width="80px">
+                        <img class="shadow border rounded-circle border-0" src="assets/man.png" alt="User1"
+                             width="80px">
                     </div>
                     <div class="card-title my-3 fw-bold">
                         John Doe
                     </div>
-                    <div class="card-subtitle text-muted">
+                    <div class="card-subtitle text-muted fw-bold">
                         @user1
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-4 ">
-                            <p>Not Known<span></span></p>
+                        <div class="col-md-4 shadow-sm">
+                            <p>Not Known</p>
+                            <p class="fw-bold">10</p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 shadow-sm">
                             <p>Not Sure</p>
+                            <p class="fw-bold">19</p>
                         </div>
-                        <div class="col-md-4">
-                            <p>Known<span></span></p>
+                        <div class="col-md-4 shadow-sm">
+                            <p>Known</p>
+                            <p class="fw-bold">50</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row gap-3 d-flex justify-content-center">
-                <div class="card bg-primary text-light group-list-item col-md-3 border border-2 border-light">
-                    <div class="card-body">
+            <div class="row gap-2 gap-md-5 d-flex justify-content-center ">
+                <div class="card bg-primary text-light fw-semibold group-list-item col-md-3 shadow border border-0">
+                    <a href="index.html" class="card-body text-decoration-none">
                         <p>All</p>
-                    </div>
+                    </a>
 
                 </div>
-                <div class="card bg-primary text-light group-list-item col-md-3 border border-2 border-light">
+                <div class="card bg-primary text-light fw-semibold group-list-item col-md-3 shadow border border-0">
                     <div class="card-body ">
                         <p>Learning</p>
                     </div>
                 </div>
-                <div class="card bg-primary text-light group-list-item col-md-3 border border-2 border-light">
+                <div class="card bg-primary text-light fw-semibold group-list-item col-md-3 shadow border border-0">
                     <div class="card-body">
                         <p>Mastered</p>
                     </div>

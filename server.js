@@ -22,13 +22,6 @@ conn.connect((err) => {
         console.log('Connected to MySQL successfully');
     }
 });
-app.options('/question', cors())
-
-
-
-app.get('/question', (req, res) => {
-    res.json({ message: "Conncted to backend successfully!!!" })
-})
 
 // Define the '/question' route
 app.get('/question', (req, res) => {

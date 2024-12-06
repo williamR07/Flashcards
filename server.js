@@ -1,32 +1,17 @@
 const express = require('express');
-const mysql = require('mysql2');
 const cors = require('cors');
 const PORT = 3000;
 const app = express();
+const routes = require('./views/routes');
 
 // Use CORS middleware to allow requests from specific origins
-app.use(cors()); // Replace with the actual origin if needed
+app.use(cors()); 
 
-// Setup database connection
-const conn = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'question'
-});
-
-conn.connect((err) => {
-    if (err) {
-        console.error("Failed to connect to MySQL: " + err);
-    } else {
-        console.log('Connected to MySQL successfully');
-    }
-});
+//The midleware converts the data to JSON format
+app.use(express.json());
 
 // Define the '/question' route
-app.get('/question', (req, res) => {
-    res.json({message: "Connected to backend successfully!"});
-});
+app.use('', routes);
 
 // Start the server
 app.listen(PORT, () => {

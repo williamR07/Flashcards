@@ -35,24 +35,32 @@ const flip = (element) => {
 
 
 knowIt.addEventListener("click", () => {
+    index++;
     cards.forEach(card => {
         card.classList.add('slide-right');
         setTimeout(() => {
             card.classList.remove('slide-right');
             question.textContent = qAndA[index].question;
             answer.textContent = qAndA[index].answer;
-            index++;
         }, 1000)
     })
+    console.log(index)
 });
 
 dontKnow.addEventListener("click", () => {
+    index--;
+
     cards.forEach(card => {
         card.classList.add('slide-left');
         setTimeout(() => {
             card.classList.remove('slide-left');
+            question.textContent = qAndA[index].question;
+            answer.textContent = qAndA[index].answer;
+
         }, 1000)
     })
+
+
 });
 
 cards.forEach(card => {
@@ -88,7 +96,7 @@ cards.forEach(card => {
 
 fetch('http://localhost:3000/question', {
     method: 'GET',
-    headers: {'Content-Type': 'application/json'}
+    headers: { 'Content-Type': 'application/json' }
 })
     .then(response => response.json())
     .then(data => console.log(data))

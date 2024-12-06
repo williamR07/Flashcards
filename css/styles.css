@@ -1,60 +1,64 @@
 .body-container {
-  height: 90vh;
-  margin-top: 5vh;
-  overflow: hidden;
+    height: 90vh;
+    min-height: 90vh;
+    margin-top: 5vh;
+    overflow: hidden;
 }
 
 .card {
-  min-height: 400px;
-  max-height: 400px;
+    min-height: 400px;
+    max-height: 400px;
 }
 
 .front {
-  transform: rotateY(360deg);
+    transform: rotateY(360deg);
 }
 
 .back {
-  transform: rotateY(180deg);
+    transform: rotateY(180deg);
 }
 
 .question, .answer {
-  display: none;
+    display: none;
 }
 
 .active {
-  display: block;
+    display: block;
 }
 
 @keyframes fadeRight {
-  0% {
-    transform: translateX(0%);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
+    0% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
 }
+
 @keyframes fadeLeft {
-  0% {
-    transform: translateX(0%);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
+    0% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
 }
+
 .slide-right {
-  animation: fadeRight 1s ease-in-out;
+    animation: fadeRight 1s ease-in-out;
 }
 
 .slide-left {
-  animation: fadeLeft 1s ease-in-out;
+    animation: fadeLeft 1s ease-in-out;
 }
 
-@media (min-width: 992px) { /* lg breakpoint */
-  .body-container {
-    width: 800px;
-  }
+@media (min-width: 992px) {
+    /* lg breakpoint */
+    .body-container {
+        width: 800px;
+    }
 }

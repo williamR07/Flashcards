@@ -1,3 +1,14 @@
+.body-container {
+  height: 90vh;
+  margin-top: 5vh;
+  overflow: hidden;
+}
+
+.card {
+  min-height: 400px;
+  max-height: 400px;
+
+}
 
 .front {
 
@@ -44,4 +55,11 @@
 
 .slide-left {
   animation: fadeLeft 1s ease-in-out;
+}
+
+@media (min-width: 992px) { /* lg breakpoint */
+  .body-container {
+    width: 800px;
+
+  }
 }

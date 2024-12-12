@@ -9,9 +9,16 @@ const dontKnow = document.querySelector(".dont-know");
 const category = document.getElementById("category");
 const reviewing = document.getElementById("reviewing");
 const oneCardBack = document.getElementById("#oneCardBack");
+const learning = document.getElementById("learning");
+const mastered = document.getElementById("mastered");
+let masteredCount = 0;
+let learningCount = 0;
 let rotated = false;
+let leftBtn = false;
+let rightBtn = false;
 let index = 0;
-qAndA = [];
+
+let qAndA = [];
 
 
 const flip = (element) => {
@@ -24,12 +31,11 @@ const flip = (element) => {
         element.classList.add("front");
     }
 }
-let leftBtn = false;
-let rightBtn = false;
+
 const handleCards = (arg) => {
     console.log(arg)
     cards.forEach(card => {
-        index++;
+
         const updateData = {
             questionId: qAndA[index].questionId,
             status: arg
@@ -60,6 +66,7 @@ const handleCards = (arg) => {
             console.error('There was a problem with your fetch operation:', error);
         });
         console.log(updateData)
+        index++;
         setTimeout(() => {
             card.classList.remove('slide-right');
             card.classList.remove('slide-left');
@@ -70,6 +77,8 @@ const handleCards = (arg) => {
         }, 1000);
     });
 };
+
+
 cards.forEach(card => {
     setTimeout(() => {
         card.classList.remove('slide-right');
@@ -78,18 +87,24 @@ cards.forEach(card => {
         category.textContent = qAndA[index].category;
     }, 100)
 })
+
+
 knowIt.addEventListener("click", () => {
+
     leftBtn = true;
     handleCards('mastered');
     leftBtn = false;
-
+    masteredCount++;
+    mastered.textContent = masteredCount;
 });
 
 dontKnow.addEventListener("click", () => {
+
     rightBtn = true;
     handleCards('learning');
     rightBtn = false
-
+    learningCount++;
+    learning.textContent = learningCount;
 });
 
 cards.forEach(card => {
@@ -131,9 +146,18 @@ fetch('http://localhost:3000/question', {
     .then(data => {
         data.forEach((question) => {
             qAndA.push(question);
+
         })
         reviewing.textContent = qAndA.length;
-        console.log(qAndA.length - index)
+        qAndA.forEach(item => {
+            if (item.status === 'mastered') {
+                masteredCount++;
+            } else if (item.status === 'learning') {
+                learningCount++;
+            }
+
+        })
+        mastered.textContent = masteredCount;
+        learning.textContent = learningCount;
     })
     .catch(error => console.error('Error:', error));
-

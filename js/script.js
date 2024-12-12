@@ -11,8 +11,7 @@ const reviewing = document.getElementById("reviewing");
 const oneCardBack = document.getElementById("#oneCardBack");
 const learning = document.getElementById("learning");
 const mastered = document.getElementById("mastered");
-let masteredCount = 0;
-let learningCount = 0;
+
 let rotated = false;
 let leftBtn = false;
 let rightBtn = false;
@@ -78,6 +77,18 @@ const handleCards = (arg) => {
     });
 };
 
+const handleMasteredLearning = (qAndA) => {
+    let masteredCount = 0;
+    let learningCount = 0;
+    qAndA.forEach(item => {
+        if (item.status === 'mastered') {
+            masteredCount++;
+        } else if (item.status === 'learning') {
+            learningCount++;
+        }
+    })
+    return {masteredCount, learningCount};
+}
 
 cards.forEach(card => {
     setTimeout(() => {
@@ -90,21 +101,33 @@ cards.forEach(card => {
 
 
 knowIt.addEventListener("click", () => {
-
+    console.log(qAndA.length - 1, index)
+    if (index === qAndA.length - 1) {
+        return
+    }
+    qAndA[index].status = 'mastered';
     leftBtn = true;
     handleCards('mastered');
     leftBtn = false;
-    masteredCount++;
+    const {masteredCount, learningCount} = handleMasteredLearning(qAndA);
     mastered.textContent = masteredCount;
+    learning.textContent = learningCount;
 });
 
 dontKnow.addEventListener("click", () => {
-
+    if (index === qAndA.length - 1) {
+        return
+    }
+    qAndA[index].status = 'learning';
+    console.log(qAndA[index].status)
     rightBtn = true;
     handleCards('learning');
     rightBtn = false
-    learningCount++;
+    const {masteredCount, learningCount} = handleMasteredLearning(qAndA);
+    mastered.textContent = masteredCount;
     learning.textContent = learningCount;
+
+
 });
 
 cards.forEach(card => {
@@ -146,18 +169,12 @@ fetch('http://localhost:3000/question', {
     .then(data => {
         data.forEach((question) => {
             qAndA.push(question);
-
         })
-        reviewing.textContent = qAndA.length;
-        qAndA.forEach(item => {
-            if (item.status === 'mastered') {
-                masteredCount++;
-            } else if (item.status === 'learning') {
-                learningCount++;
-            }
-
-        })
+        const {masteredCount, learningCount} = handleMasteredLearning(qAndA);
         mastered.textContent = masteredCount;
         learning.textContent = learningCount;
+        reviewing.textContent = qAndA.length;
+
+
     })
     .catch(error => console.error('Error:', error));

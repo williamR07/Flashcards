@@ -31,7 +31,30 @@ const storeQuestion = (req, res) => {
 };
 
 const updateQuestion = (req, res) => {
+    const { status, questionId } = req.body;
 
-    res.json({ messsage: 'The data was updated successfully!!!' });
-}
+    // Validate inputs
+    if (!status || !questionId) {
+        return res.status(400).send({ error: 'Status and Question ID are required' });
+    }
+
+    // Query with placeholders to prevent SQL injection
+    const query = `UPDATE questions SET status = ? WHERE questionId = ?`;
+
+    // Execute the query with parameterized values
+    conn.query(query, [status, questionId], (err, result) => {
+        if (err) {
+            console.error('Database error:', err); // Log the error for debugging
+            return res.status(500).send({ error: 'An error occurred while updating the data' });
+        }
+
+        // Check if any row was updated
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'No question found with the given ID' });
+        }
+
+        res.status(200).json({ message: 'The data updated successfully!' });
+    });
+};
+
 module.exports = { getRequest, storeQuestion, updateQuestion }; 

@@ -14,20 +14,24 @@ const getRequest = (req, res) => {
 };
 
 const storeQuestion = (req, res) => {
-    const query = 'INSERT INTO questions (question, answer, category) VALUES (?, ?, ?)'; // Specify table and columns
-    const { question, answer, selectedCategory} = req.body; // Extract data from the request body
+    const query = 'INSERT INTO questions (question, answer, category) VALUES (?, ?, ?)';
+    const { question, answer, selectedCategory } = req.body;
 
     if (!question || !answer || !selectedCategory) {
         return res.status(400).send({ error: 'Missing required fields: question, answer, or category' });
     }
 
-    conn.query(query, [ question, answer, selectedCategory], (err, result) => {
+    conn.query(query, [question, answer, selectedCategory], (err, result) => {
         if (err) {
-            console.error('Database error:', err); // Log the error for debugging
+            console.error('Database error:', err);
             return res.status(500).send({ error: 'There was an error storing the data' });
         }
         res.status(200).json({ message: 'The question has been successfully stored' });
     });
 };
 
-module.exports = { getRequest, storeQuestion }; // Ensure this is correctly exported
+const updateQuestion = (req, res) => {
+
+    res.json({ messsage: 'The data was updated successfully!!!' });
+}
+module.exports = { getRequest, storeQuestion, updateQuestion }; 

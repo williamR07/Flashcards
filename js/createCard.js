@@ -1,6 +1,7 @@
 const dropDownBtn = document.getElementById('dropDownBtn');
 const categories = document.querySelectorAll('.dropdown-item');
-
+let success = false;
+const alertDiv = document.getElementById('alert');
 
 categories.forEach(category => {
     category.addEventListener('click', () => {
@@ -34,10 +35,26 @@ flashcardForm.addEventListener('submit', (event) => {
     // Additional handling, such as form validation or submission via AJAX
     fetch('http://localhost:3000/question', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question, answer, selectedCategory })
-    }).then(response => response.json()).then(data => alert(data.message))
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({question, answer, selectedCategory})
+    }).then(response => response.json()).then(data => {
+            success = true
+            if (!success) {
+                alertDiv.classList.add('d-none');
+            } else {
+                alertDiv.classList.remove('d-none');
+                alertDiv.textContent = data.message;
+                setTimeout(() => {
+                    success = false
+                    alertDiv.classList.add('d-none');
+                }, 1000)
+            }
+
+        }
+    )
 });
+console.log(success)
+
 
 
 

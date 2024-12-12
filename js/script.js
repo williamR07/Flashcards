@@ -26,12 +26,13 @@ const flip = (element) => {
 }
 let leftBtn = false;
 let rightBtn = false;
-const handleCards = () => {
-
+const handleCards = (arg) => {
+    console.log(arg)
     cards.forEach(card => {
         index++;
         const updateData = {
-            questionId: qAndA[index].questionId
+            questionId: qAndA[index].questionId,
+            status: arg
         };
         const jsonData = JSON.stringify(updateData);
         const options = {
@@ -79,14 +80,14 @@ cards.forEach(card => {
 })
 knowIt.addEventListener("click", () => {
     leftBtn = true;
-    handleCards();
+    handleCards('mastered');
     leftBtn = false;
 
 });
 
 dontKnow.addEventListener("click", () => {
     rightBtn = true;
-    handleCards();
+    handleCards('learning');
     rightBtn = false
 
 });

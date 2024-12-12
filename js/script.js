@@ -24,7 +24,9 @@ const flip = (element) => {
         element.classList.add("front");
     }
 }
-const handleCards = (isKnown) => {
+let leftBtn = false;
+let rightBtn = false;
+const handleCards = () => {
 
     cards.forEach(card => {
         index++;
@@ -39,12 +41,11 @@ const handleCards = (isKnown) => {
             },
             body: jsonData
         };
-        if (isKnown) {
+        if (leftBtn) {
             card.classList.add('slide-right');
 
-            console.log('Response:', response);
-
-        } else {
+        }
+        if (rightBtn) {
             card.classList.add('slide-left');
         }
         fetch('http://localhost:3000/question', options).then(response => {
@@ -59,7 +60,8 @@ const handleCards = (isKnown) => {
         });
         console.log(updateData)
         setTimeout(() => {
-            card.classList.remove(isKnown ? 'slide-right' : 'slide-left');
+            card.classList.remove('slide-right');
+            card.classList.remove('slide-left');
             question.textContent = qAndA[index].question;
             answer.textContent = qAndA[index].answer;
             category.textContent = qAndA[index].category;
@@ -76,11 +78,17 @@ cards.forEach(card => {
     }, 100)
 })
 knowIt.addEventListener("click", () => {
+    leftBtn = true;
     handleCards();
+    leftBtn = false;
+
 });
 
 dontKnow.addEventListener("click", () => {
+    rightBtn = true;
     handleCards();
+    rightBtn = false
+
 });
 
 cards.forEach(card => {

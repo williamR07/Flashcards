@@ -1,7 +1,16 @@
+body {
+  height: 100vh;
+  margin-top: 10%
+}
+
 .body-container {
   height: 100%;
-  margin: 2.5% auto;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  max-height: 800px;
 }
 
 .card {

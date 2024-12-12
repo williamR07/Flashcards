@@ -50,6 +50,7 @@ flashcardForm.addEventListener('submit', (event) => {
                     alertDiv.classList.add('d-none');
                     document.getElementById('question').value = '';
                     document.getElementById('answer').value = '';
+                    dropDownBtn.textContent = 'Choose a category';
                 }, 1000)
             }
 

@@ -3,6 +3,7 @@ const categories = document.querySelectorAll('.dropdown-item');
 let success = false;
 const alertDiv = document.getElementById('alert');
 
+
 categories.forEach(category => {
     category.addEventListener('click', () => {
         dropDownBtn.textContent = category.textContent;
@@ -24,8 +25,8 @@ flashcardForm.addEventListener('submit', (event) => {
     const selectedCategory = dropDownBtn.textContent.trim();
 
     // Get the question and answer values
-    const question = document.getElementById('question').value.trim();
-    const answer = document.getElementById('answer').value.trim();
+    const question = document.getElementById('question').value;
+    const answer = document.getElementById('answer').value;
 
     // Log the values (or send them to a server)
     console.log('Selected Category:', selectedCategory);
@@ -47,13 +48,14 @@ flashcardForm.addEventListener('submit', (event) => {
                 setTimeout(() => {
                     success = false
                     alertDiv.classList.add('d-none');
+                    document.getElementById('question').value = '';
+                    document.getElementById('answer').value = '';
                 }, 1000)
             }
 
         }
     )
 });
-console.log(success)
 
 
 

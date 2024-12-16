@@ -1,25 +1,23 @@
-// Add custom JavaScript here
 const cards = document.querySelectorAll(".card");
 const question = document.querySelector(".question");
 const cardTitle = document.querySelector(".card-title");
 const cardSubtitle = document.querySelector(".card-subtitle");
 const answer = document.querySelector(".answer");
-const knowIt = document.querySelector(".know");
-const dontKnow = document.querySelector(".dont-know");
+const handleKnowIt = document.querySelector(".know");
+const handleDontKnow = document.querySelector(".dont-know");
 const category = document.getElementById("category");
 const reviewing = document.getElementById("reviewing");
-const oneCardBack = document.getElementById("#oneCardBack");
+const oneCardBack = document.getElementById("oneCardBack");
 const learning = document.getElementById("learning");
 const mastered = document.getElementById("mastered");
-
 let rotated = false;
-let leftBtn = false;
-let rightBtn = false;
+let btnLearning = false;
+let btnMastered = false;
 let index = 0;
 
 let qAndA = [];
 
-
+// flip card
 const flip = (element) => {
     if (!rotated) {
         element.classList.remove("front");
@@ -30,7 +28,6 @@ const flip = (element) => {
         element.classList.add("front");
     }
 }
-
 const handleCards = (arg) => {
     console.log(arg)
     cards.forEach(card => {
@@ -47,12 +44,14 @@ const handleCards = (arg) => {
             },
             body: jsonData
         };
-        if (leftBtn) {
+        if (btnMastered) {
+
+            card.classList.add('slide-left');
+        }
+        if (btnLearning) {
+            console.log('btnLearning', btnLearning)
             card.classList.add('slide-right');
 
-        }
-        if (rightBtn) {
-            card.classList.add('slide-left');
         }
         fetch('http://localhost:3000/question', options).then(response => {
             if (!response.ok) {
@@ -100,29 +99,32 @@ cards.forEach(card => {
 })
 
 
-knowIt.addEventListener("click", () => {
+handleKnowIt.addEventListener("click", () => {
     console.log(qAndA.length - 1, index)
     if (index === qAndA.length - 1) {
         return
     }
+    if (rotated) {
+        console.log(rotated)
+    }
     qAndA[index].status = 'mastered';
-    leftBtn = true;
+    btnMastered = true;
     handleCards('mastered');
-    leftBtn = false;
+    btnMastered = false;
     const {masteredCount, learningCount} = handleMasteredLearning(qAndA);
     mastered.textContent = masteredCount;
     learning.textContent = learningCount;
 });
 
-dontKnow.addEventListener("click", () => {
+handleDontKnow.addEventListener("click", () => {
     if (index === qAndA.length - 1) {
         return
     }
     qAndA[index].status = 'learning';
     console.log(qAndA[index].status)
-    rightBtn = true;
+    btnLearning = true;
     handleCards('learning');
-    rightBtn = false
+    btnLearning = false
     const {masteredCount, learningCount} = handleMasteredLearning(qAndA);
     mastered.textContent = masteredCount;
     learning.textContent = learningCount;
@@ -130,6 +132,16 @@ dontKnow.addEventListener("click", () => {
 
 });
 
+oneCardBack.addEventListener('click', () => {
+    if (index === 0) {
+        return
+    }
+    index--;
+    question.textContent = qAndA[index].question;
+    answer.textContent = qAndA[index].answer;
+    category.textContent = qAndA[index].category;
+    reviewing.textContent = qAndA.length - index;
+})
 cards.forEach(card => {
     card.addEventListener("click", (e) => {
         if (!rotated) {
@@ -160,6 +172,7 @@ cards.forEach(card => {
 
     })
 })
+
 
 fetch('http://localhost:3000/question', {
     method: 'GET',

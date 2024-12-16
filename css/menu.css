@@ -1,0 +1,8 @@
+.category {
+    transition: .8s;
+}
+
+.category:hover {
+    cursor: pointer;
+    transform: translateY(-6px);
+}

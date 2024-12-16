@@ -54,7 +54,7 @@ const updateStatus = (status) => {
     fetch('http://localhost:3000/question', options)
         .then(response => response.json())
         .then(data => {
-            console.log('Resource updated successfully:', data);
+
         })
         .catch(error => {
             console.error('There was a problem with your fetch operation:', error);
@@ -140,7 +140,7 @@ const handleCards = (status) => {
         fetch('http://localhost:3000/question', options)
             .then(response => response.json())
             .then(data => {
-                console.log('Resource updated successfully:', data);
+               
             })
             .catch(error => {
                 console.error('There was a problem with your fetch operation:', error);

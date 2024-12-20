@@ -1,12 +1,13 @@
 .body-container {
     height: 80vh;
+    max-height: 900px;
     margin: 10vh auto;
     overflow: hidden;
 }
 
 .card {
     min-height: 300px;
-    max-height: 300px;
+    max-height: 400px;
     overflow: scroll;
 }
 

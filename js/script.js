@@ -140,7 +140,7 @@ const handleCards = (status) => {
         fetch('http://localhost:3000/question', options)
             .then(response => response.json())
             .then(data => {
-               
+
             })
             .catch(error => {
                 console.error('There was a problem with your fetch operation:', error);
@@ -179,3 +179,4 @@ fetch('http://localhost:3000/question', {
         reviewing.textContent = qAndA.length;
     })
     .catch(error => console.error('Error:', error));
+
